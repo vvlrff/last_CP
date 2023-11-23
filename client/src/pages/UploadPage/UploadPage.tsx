@@ -1,8 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import s from "./UploadPage.module.scss";
-
 
 const FileUploadPage: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
@@ -33,11 +32,15 @@ const FileUploadPage: React.FC = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.post("http://127.0.0.1:8000/api/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            const response = await axios.post(
+                "http://127.0.0.1:8000/api/upload",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
 
             console.log("Файл успешно загружен");
             setServerResponse(response.data);
@@ -46,7 +49,7 @@ const FileUploadPage: React.FC = () => {
         } finally {
             setIsLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
         if (serverResponse) {
@@ -56,26 +59,33 @@ const FileUploadPage: React.FC = () => {
     }, [serverResponse, navigate]);
 
     return (
-        <form onSubmit={handleSubmit} className={s.form}>
-            <input type="file" onChange={handleFileChange} className={s.input} />
-            <p className={s.p}>Выбранный файл: {fileName}</p>
-            {isLoading ? (
-                <p className={s.p}>Идет обработка данных...</p>
-            ) : (
-                <>
-                    <p className={s.p}>
-                        Перетащите свои файлы сюда или щелкните в этой области
-                    </p>
-                    <button
-                        disabled={!file}
-                        type="submit"
-                        className={s.button}
-                    >
+        <section className={s.section}>
+            <form onSubmit={handleSubmit} className={s.form}>
+                <div className={s.formContainer}>
+                    <input
+                        type="file"
+                        onChange={handleFileChange}
+                        className={s.input}
+                    />
+                    <p className={s.p}>Выбранный файл: {fileName}</p>
+                    {isLoading ? (
+                        <p className={s.p}>Идет обработка данных...</p>
+                    ) : (
+                        <>
+                            <p className={s.p}>
+                                Перетащите свои файлы сюда или щелкните в этой
+                                области
+                            </p>
+                        </>
+                    )}
+                </div>
+                <div className={s.buttonContainer}>
+                    <button disabled={!file} type="submit" className={s.button}>
                         Загрузить файл
                     </button>
-                </>
-            )}
-        </form>
+                </div>
+            </form>
+        </section>
     );
 };
 

@@ -1,21 +1,27 @@
-.form {
-    height: 40vh;
-    width: 30vw;
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.formContainer {
     // background: #fff;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 100px 50px;
+    min-width: 600px;
     border-radius: 20px;
     color: #000;
     border: 4px dashed #cccccc;
 }
 
 .p {
-    width: 80%;
-    height: 100%;
     text-align: center;
-    color: #929292;
+    color: #000;
     font-weight: 600;
 }
 
@@ -23,28 +29,27 @@
     position: absolute;
     margin: 0;
     padding: 0;
-    height: 40vh;
-    width: 30vw;
+    width: 100%;
+    height: 100%;
     outline: none;
     opacity: 0;
     cursor: pointer;
 }
 
+.buttonContainer {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: fit-content;
+}
+
 .button {
-    position: relative;
     background: #f8ef00;
     color: black;
-    top: 100px;
-    margin: 0;
     border: none;
-    width: 50%;
     font-weight: 600;
     font-size: 16px;
     padding: 16px 32px;
-    margin-left: -4px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    outline: none;
+    border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.4s ease, box-shadow 0.3s ease,
         color 0.4s ease;
@@ -71,7 +76,7 @@
 
 .button:disabled {
     background-color: grey;
-    color: cccccc;
+    color: #cccccc;
     cursor: not-allowed;
     opacity: 0.5;
 }
