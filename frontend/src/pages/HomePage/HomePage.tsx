@@ -1,14 +1,16 @@
-import Container from "../../components/Container/Container";
-import Hero from "./Hero/Hero";
-import { Box } from "@mui/material";
-import Concept from "./Concept/Concept";
+import { Link } from "react-router-dom";
+import s from "./HomePage.module.scss";
 
 const HomePage = () => {
     return (
-        <Box>
-            <Hero></Hero>
-            <Concept></Concept>
-        </Box>
+        <section className={s.section}>
+            <div className={s.hero}>
+                <h1>lorem ipsum</h1>
+                <Link to="#" className={s.btn}>
+                    proceed
+                </Link>
+            </div>
+        </section>
     );
 };
 
