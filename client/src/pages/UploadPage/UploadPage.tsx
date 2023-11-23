@@ -1,19 +1,14 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Input from "@mui/material/Input";
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import s from "./UploadPage.module.scss";
+import { hackApi } from "../../services/hackApi";
 
-
-const FileUploadForm: React.FC = () => {
+const FileUploadPage: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
     const [fileName, setFileName] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [serverResponse, setServerResponse] = useState<any | null>(null);
+
+    const [fileUpload, { data }] = hackApi.useUploadFileMutation()
 
     const navigate = useNavigate();
 
@@ -26,10 +21,10 @@ const FileUploadForm: React.FC = () => {
     };
 
     useEffect(() => {
-        if (serverResponse) {
-            navigate("/admin/result", { state: { response: serverResponse } });
+        if (data) {
+            navigate("/result", { state: { response: data } });
         }
-    }, [serverResponse, navigate]);
+    }, [data, navigate]);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -44,58 +39,34 @@ const FileUploadForm: React.FC = () => {
         try {
             setIsLoading(true);
 
-            const response = await api.post("/api/upload", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-
-            console.log(response.data);
-            setServerResponse(response.data);
-            console.log("Файл успешно загружен");
-        } catch (error) {
-            console.error("Ошибка при загрузке файла:", error);
+            await fileUpload(formData)
         } finally {
             setIsLoading(false);
         }
-    };
+    }
 
     return (
         <form onSubmit={handleSubmit} className={s.form}>
-            <Input
-                type="file"
-                onChange={handleFileChange}
-                className={s.input}
-                inputProps={{ className: s.inputField }}
-            />
-            <Typography variant="body2" className={s.p}>
-                Выбранный файл: {fileName}
-            </Typography>
+            <input type="file" onChange={handleFileChange} className={s.input} />
+            <p className={s.p}>Выбранный файл: {fileName}</p>
             {isLoading ? (
-                <Typography variant="body2" className={s.p}>
-                    Идет обработка данных... <CircularProgress size={16} />
-                </Typography>
+                <p className={s.p}>Идет обработка данных...</p>
             ) : (
                 <>
-                    <Typography variant="body2" className={s.p}>
+                    <p className={s.p}>
                         Перетащите свои файлы сюда или щелкните в этой области
-                    </Typography>
-                    <Box display="flex" alignItems="center">
-                        <Button
-                            disabled={!file}
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            startIcon={<CloudUploadIcon />}
-                            className={s.button}
-                        >
-                            Загрузить файл
-                        </Button>
-                    </Box>
+                    </p>
+                    <button
+                        disabled={!file}
+                        type="submit"
+                        className={s.button}
+                    >
+                        Загрузить файл
+                    </button>
                 </>
             )}
         </form>
     );
 };
 
-export default FileUploadForm;
+export default FileUploadPage;

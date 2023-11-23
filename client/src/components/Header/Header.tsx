@@ -1,24 +1,6 @@
-import {
-    Box,
-    useScrollTrigger,
-    Slide,
-    AppBar,
-    IconButton,
-    Drawer,
-    Typography,
-    Button,
-    MenuItem,
-    Popover,
-    Paper,
-} from "@mui/material";
-// import { Container, Box } from "@mui/system";
 import { ReactElement, FC, useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "../Container/Container";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import MapIcon from "@mui/icons-material/Map";
 interface IHideOnScroll {
     children: ReactElement;
 }

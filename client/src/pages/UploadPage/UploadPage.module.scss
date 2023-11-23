@@ -1,112 +1,77 @@
-.container {
+.form {
+    height: 40vh;
+    width: 30vw;
+    // background: #fff;
     display: flex;
-    height: calc(100vh - 60px);
-    width: 100vw;
-    background: #121212;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: #000;
+    border: 4px dashed #cccccc;
+}
 
-    .sidebar {
-        width: 30vw;
-        min-height: calc(100vh);
-        display: flex;
-        flex-direction: column;
+.p {
+    width: 80%;
+    height: 100%;
+    text-align: center;
+    color: #929292;
+    font-weight: 600;
+}
 
-        .inputFilter {
-            padding: 23px 30px;
-            border-radius: 12px;
-        }
+.input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    height: 40vh;
+    width: 30vw;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
 
-        .itemContainer {
-            margin-top: 55px;
-        }
+.button {
+    position: relative;
+    background: #f8ef00;
+    color: black;
+    top: 100px;
+    margin: 0;
+    border: none;
+    width: 50%;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 16px 32px;
+    margin-left: -4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.4s ease, box-shadow 0.3s ease,
+        color 0.4s ease;
+    -webkit-transition: background-color 0.4s ease, box-shadow 0.3s ease,
+        color 0.4s ease;
+    -moz-transition: background-color 0.4s ease, box-shadow 0.3s ease,
+        color 0.4s ease;
+    -ms-transition: background-color 0.4s ease, box-shadow 0.3s ease,
+        color 0.4s ease;
+    -o-transition: background-color 0.4s ease, box-shadow 0.3s ease,
+        color 0.4s ease;
+}
 
-        .datetime {
-            display: block;
-            width: fit-content;
-            background-color: #fff;
-            padding: 5px;
-            border-radius: 8px;
+.button:hover {
+    background-color: #f75049;
+    box-shadow: 5px 5px 5px #5c3a3a;
+}
 
-            label {
-                padding: 7px;
-            }
+.button:active {
+    color: #5ef6ff;
+    background-color: rgba(94, 246, 255, 0.3);
+    box-shadow: 5px 5px 5px rgba(94, 246, 255, 0.1);
+}
 
-            input {
-                color: #121212;
-            }
-
-            .MuiInput-underline:before {
-                border-bottom-color: "white";
-            }
-
-            .MuiInput-underline:after {
-                border-bottom-color: "white";
-            }
-
-            .MuiInput-input {
-                color: "white";
-            }
-
-            .MuiInputLabel-root {
-                color: "white";
-            }
-        }
-
-        .item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 85%;
-
-            gap: 10px;
-            background-color: #fff;
-            border-radius: 12px;
-            margin: 0 auto;
-            margin-top: 20px;
-            margin-bottom: 20px;
-
-            padding: 10px 25px;
-            color: #121212;
-            cursor: pointer;
-            box-shadow: 0 0 4px 4px transparent;
-            transition: box-shadow 0.3s ease, color 0.3s ease,
-                background-color 0.3s ease;
-
-            &:hover {
-                box-shadow: 0 0 4px 4px #eb5525;
-            }
-
-            &:active {
-                color: #fff;
-                background-color: #121212;
-            }
-
-            .content {
-                .title {
-                    margin: 5px 0;
-                    font-weight: 400;
-                    font-size: 16px;
-
-                    span {
-                        font-weight: 600;
-                        font-size: 18px;
-                    }
-                }
-            }
-
-            .svg {
-                width: 75px;
-                height: 75px;
-
-                path {
-                    fill: #7036bd;
-                }
-            }
-        }
-    }
-
-    .map {
-        width: 70vw;
-        height: calc(90vh + 15px);
-        overflow: hidden;
-    }
+.button:disabled {
+    background-color: grey;
+    color: cccccc;
+    cursor: not-allowed;
+    opacity: 0.5;
 }

@@ -1,0 +1,27 @@
+.section {
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    height: 700px;
+    text-align: center;
+
+    .btn {
+        padding: 12px 24px;
+        border: 2px solid black;
+        border-radius: 12px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #8d7171;
+        }
+
+        &:active {
+            background-color: #f0a2a2;
+        }
+    }
+}
