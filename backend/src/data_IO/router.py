@@ -1,9 +1,9 @@
-import os
 from fastapi import APIRouter, File, UploadFile
-from fastapi.responses import JSONResponse
-from .schemas import InputUserSchema, ResponseSchema
+from fastapi.responses import FileResponse 
+from .schemas import ResponseSchema
 from .AI_model import Magic
 
+import os
 
 router = APIRouter (
     prefix='/api',
@@ -22,12 +22,7 @@ async def upload_file(file: UploadFile = File(...)):
     magic = Magic(path_file=file_path)
     path = magic.res_file()
     
-    return JSONResponse(
-        content={
-            'download':True,
-            'res_file':path
-        }
-    )
+    return FileResponse(path, filename=file.filename)
 
 @router.get('/string_res', response_model=ResponseSchema)
 async def string_res(user_input:str):
