@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import s from "./ResultPage.module.scss";
+// import s from "./ResultPage.module.scss";
 
 
 const ResultPage: React.FC = () => {
