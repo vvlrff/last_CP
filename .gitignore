@@ -14,6 +14,7 @@ crashlytics-build.properties
 fabric.properties
 .idea/
 *~
+.pt
 .fuse_hidden*
 .directory
 .Trash-*
@@ -127,3 +128,5 @@ cython_debug/
 .env.dev
 server/src/parsing/reddit/__pycache__/ml.cpython-311.pyc
 server/src/admin/__pycache__/support.cpython-311.pyc
+NLP/NaturaLP_LaBSE_topic.pt
+NLP/NaturaLP_LaBSE_topic_group.pt
