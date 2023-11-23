@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .admin.router import router as router_admin
-
+from .data_IO.router import router as router_IO
 
 app = FastAPI(
-    title="HACK API"
+    title="Digital HACK API"
 )
 
 
@@ -22,4 +21,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router_admin)
+app.include_router(router_IO)
