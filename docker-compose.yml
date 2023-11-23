@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    command: [ "/bin/sh", "/backend/docker/app.sh" ]
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - dbhack
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    command: npm run dev
+    depends_on:
+      - backend
+
+  pgadminhack:
+    image: dpage/pgadmin4:latest
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8085:80"
+    depends_on:
+      - dbhack
+
+  dbhack:
+    image: postgres:15
+    container_name: dbhack
+    command: -p 1221
+    expose:
+      - 1221
+    env_file:
+      - ./backend/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  alembic:
+    build:
+      context: .
+      dockerfile: alembic/Dockerfile
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - dbhack
+    command: alembic upgrade head
+
+volumes:
+  postgres_data:
+
