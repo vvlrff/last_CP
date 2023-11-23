@@ -11,7 +11,8 @@ origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
     "http://localhost",
-    "http://localhost:3000", # Порт для клиентской части 
+    "http://localhost:3000",  # Порт для клиентской части
+    "http://localhost:5173",  # Порт для клиентской части
 ]
 app.add_middleware(
     CORSMiddleware,
