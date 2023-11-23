@@ -12,7 +12,8 @@ export const hackApi = createApi({
         method: "POST",
         body: formData,
         headers: {
-          "Content-Type": "multipart/form-data",
+          // Нет необходимости явно указывать границу, она будет сгенерирована автоматически
+          "Content-Type": `multipart/form-data`,
         },
       }),
     }),

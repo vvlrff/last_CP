@@ -9,7 +9,7 @@ const ResultPage: React.FC = () => {
     return (
         <div>
             ResultPage
-            {state}
+            {/* {state.response} */}
         </div>
     );
 };

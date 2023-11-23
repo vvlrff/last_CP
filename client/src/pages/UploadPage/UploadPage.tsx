@@ -1,14 +1,14 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 import s from "./UploadPage.module.scss";
-import { hackApi } from "../../services/hackApi";
+
 
 const FileUploadPage: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
     const [fileName, setFileName] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    const [fileUpload, { data }] = hackApi.useUploadFileMutation()
+    const [serverResponse, setServerResponse] = useState<any | null>(null);
 
     const navigate = useNavigate();
 
@@ -19,12 +19,6 @@ const FileUploadPage: React.FC = () => {
             setFileName(selectedFile.name);
         }
     };
-
-    useEffect(() => {
-        if (data) {
-            navigate("/result", { state: { response: data } });
-        }
-    }, [data, navigate]);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -39,11 +33,27 @@ const FileUploadPage: React.FC = () => {
         try {
             setIsLoading(true);
 
-            await fileUpload(formData)
+            const response = await axios.post("http://127.0.0.1:8000/api/upload", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            console.log("Файл успешно загружен");
+            setServerResponse(response.data);
+        } catch (error) {
+            console.error("Ошибка при загрузке файла:", error);
         } finally {
             setIsLoading(false);
         }
     }
+
+    useEffect(() => {
+        if (serverResponse) {
+            navigate("/result");
+            // navigate("/result", { state: { response: serverResponse } });
+        }
+    }, [serverResponse, navigate]);
 
     return (
         <form onSubmit={handleSubmit} className={s.form}>

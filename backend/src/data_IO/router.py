@@ -14,7 +14,7 @@ router = APIRouter (
 @router.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
 
-    file_path = os.path.join(os.path.join(os.getcwd(), 'backend', 'src', 'data_IO', 'stash_files'), file.filename)  
+    file_path = os.path.join(os.path.join(os.getcwd(), 'src', 'data_IO', 'stash_files'), file.filename)  
     
     with open(file_path, "wb") as f:  
         f.write(await file.read())
