@@ -39,8 +39,7 @@ const InputPage: React.FC = () => {
 
     useEffect(() => {
         if (serverResponse) {
-            navigate("/map");
-            // navigate("/result", { state: { response: serverResponse } });
+            navigate("/map", { state: { response: serverResponse } });
         }
     }, [serverResponse, navigate]);
 
