@@ -2,50 +2,38 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import s from "./InputPage.module.scss";
+import Loader from "../../components/Loader/Loader";
+import { motion } from "framer-motion";
 
 const InputPage: React.FC = () => {
-    const [file, setFile] = useState<File | null>(null);
-    const [fileName, setFileName] = useState<string>("");
+    const [text, setText] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [serverResponse, setServerResponse] = useState<any | null>(null);
 
     const navigate = useNavigate();
 
-    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const selectedFile = event.target.files?.[0];
-        if (selectedFile) {
-            setFile(selectedFile);
-            setFileName(selectedFile.name);
-        }
+    const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setText(event.target.value);
     };
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (!file) {
+        if (!text) {
             return;
         }
-
-        const formData = new FormData();
-        formData.append("file", file);
 
         try {
             setIsLoading(true);
 
-            const response = await axios.post(
-                "http://127.0.0.1:8000/api/test",
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
+            const response = await axios.get(
+                `http://127.0.0.1:8000/api/string_res?user_input=${text}`
             );
 
-            console.log("Файл успешно загружен");
+            console.log("Текст успешно отправлен");
             setServerResponse(response.data);
         } catch (error) {
-            console.error("Ошибка при загрузке файла:", error);
+            console.error("Ошибка при отправке текста:", error);
         } finally {
             setIsLoading(false);
         }
@@ -53,37 +41,46 @@ const InputPage: React.FC = () => {
 
     useEffect(() => {
         if (serverResponse) {
-            navigate("/result");
-            // navigate("/result", { state: { response: serverResponse } });
+            navigate("/map", { state: { response: serverResponse } });
         }
     }, [serverResponse, navigate]);
 
     return (
         <section className={s.section}>
-            <form onSubmit={handleSubmit} className={s.form}>
-                <div className={s.formContainer}>
+            <motion.form
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                onSubmit={handleSubmit}
+                className={s.form}
+            >
+                <div>
                     <input
                         type="text"
-                        onChange={handleFileChange}
+                        value={text}
+                        onChange={handleTextChange}
                         className={s.input}
                     />
                     {isLoading ? (
                         <p className={s.p}>Идет обработка данных...</p>
                     ) : (
                         <>
-                            <p className={s.p}>
-                                Перетащите свои файлы сюда или щелкните в этой
-                                области
-                            </p>
+                            <p className={s.p}>Введите свой текст здесь</p>
                         </>
                     )}
                 </div>
-                <div className={s.buttonContainer}>
-                    <button disabled={!file} type="submit" className={s.button}>
-                        Загрузить файл
+                {isLoading && <Loader />}
+                <div
+                    className={
+                        text
+                            ? `${s.buttonContainer}`
+                            : `${s.buttonContainer} ${s.buttonDisabled}`
+                    }
+                >
+                    <button disabled={!text} type="submit" className={s.button}>
+                        Отправить текст
                     </button>
                 </div>
-            </form>
+            </motion.form>
         </section>
     );
 };
