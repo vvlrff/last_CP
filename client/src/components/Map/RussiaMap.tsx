@@ -10,8 +10,8 @@ const RussiaMap = ({ data }: { data: IData }) => {
         alignItems: "stretch",
     };
 
-    const center = [60, 80];
-    const zoom = 3.3;
+    const center = [data.latitude, data.longitude];
+    const zoom = 8;
 
     const getIconBySentiment = () => {
         switch (data.sentiment) {
@@ -70,7 +70,7 @@ const RussiaMap = ({ data }: { data: IData }) => {
                             <p>Тема: {data.topic}</p>
                             <p>Город: {data.adress?.город}</p>
                             <p>
-                                Тональность:
+                                Тональность: 
                                 <span
                                     style={{
                                         color:
@@ -78,7 +78,7 @@ const RussiaMap = ({ data }: { data: IData }) => {
                                                 ? "red"
                                                 : data.sentiment ===
                                                   "Нейтральная"
-                                                ? "yellow"
+                                                ? "#d1d111"
                                                 : data.sentiment ===
                                                   "Позитивная"
                                                 ? "green"

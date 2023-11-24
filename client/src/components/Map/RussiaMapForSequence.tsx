@@ -10,8 +10,8 @@ const RussiaMapForSequence = ({ data }: { data: IData[] }) => {
         alignItems: "stretch",
     };
 
-    const center = [60, 80];
-    const zoom = 3.3;
+    const center = [58.6, 56.2502];
+    const zoom = 7;
 
     const getIconBySentiment = (sentiment: string) => {
         switch (sentiment) {
@@ -66,7 +66,25 @@ const RussiaMapForSequence = ({ data }: { data: IData[] }) => {
                                 <p>Текст инцидента: {item.text_incident}</p>
                                 <p>Тема: {item.topic}</p>
                                 <p>Город: {item.adress?.город}</p>
-                                <p>Тональность: {item.sentiment}</p>
+                                <p>
+                                    Тональность: 
+                                    <span
+                                        style={{
+                                            color:
+                                                item.sentiment === "Негативная"
+                                                    ? "red"
+                                                    : item.sentiment ===
+                                                        "Нейтральная"
+                                                        ? "#d1d111"
+                                                        : item.sentiment ===
+                                                            "Позитивная"
+                                                            ? "green"
+                                                            : "",
+                                        }}
+                                    >
+                                        {item.sentiment}
+                                    </span>
+                                </p>
                             </div>
                         </Popup>
                     </Marker>
