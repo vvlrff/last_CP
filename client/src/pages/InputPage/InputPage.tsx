@@ -79,7 +79,7 @@ const InputPage: React.FC = () => {
             >
                 <div className={s.inputContainer}>
                     <h2>Введите свой текст</h2>
-                    <input
+                    <textarea
                         type="text"
                         value={text}
                         onChange={handleTextChange}
@@ -121,7 +121,7 @@ const InputPage: React.FC = () => {
                     }
                 >
                     <button disabled={!text} type="submit" className={s.button}>
-                        Отправить текст
+                        Обработать данные
                     </button>
                 </div>
             </motion.form>
