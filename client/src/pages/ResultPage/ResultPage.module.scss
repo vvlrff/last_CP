@@ -13,7 +13,7 @@
         width: 40vw;
         display: flex;
         flex-direction: column;
-        max-height: 50vh;
+        max-height: 90vh;
         overflow-y: scroll;
         padding-right: 3px;
 
@@ -44,7 +44,7 @@
 
     .map {
         width: 100%;
-        height: calc(50vh);
+        height: calc(90vh);
         overflow: hidden;
         border-radius: 24px;
     }

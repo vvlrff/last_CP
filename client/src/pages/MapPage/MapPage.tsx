@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import s from "./MapPage.module.scss";
 
-
 export interface IData {
     executor: string;
     text_incident: string;
@@ -15,16 +14,16 @@ export interface IData {
     };
     latitude: number | null;
     longitude: number | null;
-    sentiment: string
+    sentiment: string;
 }
 
 const MapPage: React.FC = () => {
     const location = useLocation();
     const { state } = location;
 
-    const data: IData = state.response
+    const data: IData = state.response;
 
-    console.log(data)
+    console.log(data);
 
     return (
         <section className={s.section}>
@@ -33,14 +32,11 @@ const MapPage: React.FC = () => {
                 animate={{ opacity: 1 }}
                 className={s.container}
             >
-
                 <div className={s.sidebar}>
                     <ul className={s.list}>
                         <li className={s.item}>
                             <span className={s.topic}>Исполнитель: </span>
-                            <span className={s.topicData}>
-                                {data.executor}
-                            </span>
+                            <span className={s.topicData}>{data.executor}</span>
                         </li>
                         <li className={s.item}>
                             <span className={s.topic}>Текст обращения: </span>
@@ -50,14 +46,30 @@ const MapPage: React.FC = () => {
                         </li>
                         <li className={s.item}>
                             <span className={s.topic}>Тема: </span>
-                            <span className={s.topicData}>
-                                {data.topic}
-                            </span>
+                            <span className={s.topicData}>{data.topic}</span>
                         </li>
                         <li className={s.item}>
                             <span className={s.topic}>Группа: </span>
                             <span className={s.topicData}>
                                 {data.topic_group}
+                            </span>
+                        </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Тональность: </span>
+                            <span
+                                className={s.topicData}
+                                style={{
+                                    color:
+                                        data.sentiment === "Негативная"
+                                            ? "red"
+                                            : data.sentiment === "Нейтральная"
+                                            ? "yellow"
+                                            : data.sentiment === "Позитивная"
+                                            ? "green"
+                                            : "",
+                                }}
+                            >
+                                {data.sentiment}
                             </span>
                         </li>
                         <li className={s.item}>
@@ -67,13 +79,10 @@ const MapPage: React.FC = () => {
                             </span>
                         </li>
                     </ul>
-
                 </div>
 
                 <div className={s.map}>
-                    <RussiaMap
-                        data={data}
-                    />
+                    <RussiaMap data={data} />
                 </div>
             </motion.div>
         </section>

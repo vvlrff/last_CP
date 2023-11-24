@@ -17,21 +17,24 @@ const RussiaMap = ({ data }: { data: IData }) => {
         switch (data.sentiment) {
             case "Негативная":
                 return new L.Icon({
-                    iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+                    iconUrl:
+                        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
                     iconSize: [25, 41],
                     iconAnchor: [12, 41],
                     popupAnchor: [1, -34],
                 });
             case "Нейтральная":
                 return new L.Icon({
-                    iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+                    iconUrl:
+                        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
                     iconSize: [25, 41],
                     iconAnchor: [12, 41],
                     popupAnchor: [1, -34],
                 });
             case "Позитивная":
                 return new L.Icon({
-                    iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+                    iconUrl:
+                        "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
                     iconSize: [25, 41],
                     iconAnchor: [12, 41],
                     popupAnchor: [1, -34],
@@ -66,7 +69,25 @@ const RussiaMap = ({ data }: { data: IData }) => {
                             <p>Текст инцидента: {data.text_incident}</p>
                             <p>Тема: {data.topic}</p>
                             <p>Город: {data.adress?.город}</p>
-                            <p>Sentiment: {data.sentiment}</p>
+                            <p>
+                                Тональность:
+                                <span
+                                    style={{
+                                        color:
+                                            data.sentiment === "Негативная"
+                                                ? "red"
+                                                : data.sentiment ===
+                                                  "Нейтральная"
+                                                ? "yellow"
+                                                : data.sentiment ===
+                                                  "Позитивная"
+                                                ? "green"
+                                                : "",
+                                    }}
+                                >
+                                    {data.sentiment}
+                                </span>
+                            </p>
                         </div>
                     </Popup>
                 </Marker>
