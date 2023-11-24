@@ -10,3 +10,5 @@ class ResponseSchema(BaseModel):
     text_incident:str
     topic:str
     adress:dict
+    latitude:float | None
+    longitude:float | None

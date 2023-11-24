@@ -4,7 +4,7 @@ import pandas as pd
 
 from .models.bert_classifier import BertClassifier
 from .schemas import ResponseSchema
-
+from .find_coords.main import main 
 class Predictor:
     def __init__(self) -> None:
         
@@ -46,11 +46,11 @@ class Predictor:
         topic_group = self.topic_group_collector[self.topic_group_classifier.predict(text)]
         topic = self.topic_collector[self.topic_classifier.predict(text)]
         adress = self.find_adress(text)
-
-        return ResponseSchema(executor=executor, topic_group=str(topic_group), text_incident=text, topic=str(topic), adress=adress) # тут будет еще исполнитель
+        latitude, longitude = main(adress)
+        print(latitude, longitude)
+        return ResponseSchema(executor=executor, topic_group=topic_group, 
+                              text_incident=text, topic=topic, adress=adress,
+                              latitude=latitude,longitude=longitude )
     
 
-# if __name__ != '__main__':
-#     tester = Predictor()
-#     print(tester.predict('Здравствуйте, скажите пожалуйста сколько времени занимает подпись документов на операцию в г Лысьва?В понедельник были переданы документы на подпись на операцию в г Перми сегодня четверг документы до сих пор не пришли. Операция была назначена на 13 сентября.Из Москвы посылка пришла быстрее.'))
 
