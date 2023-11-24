@@ -50,7 +50,7 @@ Natasha (Slovnet NER) = Slovnet BERT NER — аналог DeepPavlov BERT NER + 
 4) Выпуск в Production.
 
 ## Ссылка на Google диск (презентация и демонстрация):
-   
+https://drive.google.com/drive/folders/1ARaRnfv4liZeFQYogdySYIcUNzq5Pcqb?usp=sharing   
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
