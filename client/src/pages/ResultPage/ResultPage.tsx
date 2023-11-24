@@ -5,16 +5,15 @@ import { motion } from "framer-motion";
 import { IData } from "../MapPage/MapPage";
 import s from "./ResultPage.module.scss";
 
-
 const ResultPage: React.FC = () => {
     const location = useLocation();
     const { state } = location;
 
-    console.log("state", state)
+    console.log("state", state);
 
-    const data: IData[] = state.response.results
+    const data: IData[] = state.response.results;
 
-    console.log("data", data)
+    console.log("data", data);
 
     const container = {
         hidden: { opacity: 1, scale: 0 },
@@ -53,7 +52,9 @@ const ResultPage: React.FC = () => {
                         {data.map((itemData: IData) => (
                             <motion.li className={s.item} variants={item}>
                                 <div className={s.dataContainer}>
-                                    <span className={s.topic}>Исполнитель: </span>
+                                    <span className={s.topic}>
+                                        Исполнитель:{" "}
+                                    </span>
                                     <span className={s.topicData}>
                                         {itemData.executor}
                                     </span>
@@ -79,21 +80,41 @@ const ResultPage: React.FC = () => {
                                     </span>
                                 </div>
                                 <div className={s.dataContainer}>
+                                    <span className={s.topic}>
+                                        Тональность:{" "}
+                                    </span>
+                                    <span
+                                        className={s.topicData}
+                                        style={{
+                                            color:
+                                                data.sentiment === "Негативная"
+                                                    ? "red"
+                                                    : data.sentiment ===
+                                                      "Нейтральная"
+                                                    ? "yellow"
+                                                    : data.sentiment ===
+                                                      "Позитивная"
+                                                    ? "green"
+                                                    : "",
+                                        }}
+                                    >
+                                        {data.sentiment}
+                                    </span>
+                                </div>
+                                <div className={s.dataContainer}>
                                     <span className={s.topic}>Адрес: </span>
                                     <span className={s.topicData}>
-                                        {itemData?.adress && itemData.adress.город}
+                                        {itemData?.adress &&
+                                            itemData.adress.город}
                                     </span>
                                 </div>
                             </motion.li>
                         ))}
-
                     </motion.ul>
                 </div>
 
                 <div className={s.map}>
-                    <RussiaMapForSequence
-                        data={data}
-                    />
+                    <RussiaMapForSequence data={data} />
                 </div>
             </motion.div>
         </section>
