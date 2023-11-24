@@ -1,5 +1,5 @@
 import React from "react";
-import RussiaRailwayMap from "../../components/Map/RussiaRailwayMap";
+import RussiaMap from "../../components/Map/RussiaMap";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import s from "./MapPage.module.scss";
@@ -12,9 +12,8 @@ export interface IData {
     adress: {
         город?: string
     }
-    latitude: number
-    longitude: number
-
+    latitude: number | null
+    longitude: number | null
 }
 
 const MapPage: React.FC = () => {
@@ -70,7 +69,7 @@ const MapPage: React.FC = () => {
                 </div>
 
                 <div className={s.map}>
-                    <RussiaRailwayMap
+                    <RussiaMap
                         data={data}
                     />
                 </div>

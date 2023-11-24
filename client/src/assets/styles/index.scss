@@ -63,5 +63,14 @@ a {
 // }
 
 .slick-list {
-    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.slick-slide {
+    min-height: 300px;
+}
+
+.slick-list > div > div {
+    display: flex !important;
+    align-items: center;
 }
