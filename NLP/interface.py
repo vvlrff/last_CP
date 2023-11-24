@@ -12,14 +12,15 @@ class Predictor:
         self.topic_classifier = BertClassifier(model_path=r'C:\Users\Chubu\OneDrive\Рабочий стол\last_CP\NLP\NaturaLP_LaBSE_topic.pt',
                                                 tokenizer_path='cointegrated/LaBSE-en-ru')
         
-        # тут будет еще одна модель
+        self.executor_classifier = BertClassifier(model_path=r'C:\Users\Chubu\OneDrive\Рабочий стол\last_CP\NLP\NaturaLP_LaBSE_executor.pt',
+                                                tokenizer_path='cointegrated/LaBSE-en-ru')
         
         data = pd.read_csv("train_dataset_train.csv", delimiter=";")
         data = data.rename(columns={'Исполнитель':'executor', 'Группа тем': 'topic_group', 'Текст инцидента':'text', 'Тема': 'topic'})
 
         self.topic_group_collector = dict(enumerate(list(data.topic_group.unique())))
         self.topic_collector = dict(enumerate(list(data.topic.unique())))
-        # тут будет еще однин словарь
+        self.executor_collector = dict(enumerate(list(data.executor.unique())))
 
         self.addr_extractor = AddrExtractor(MorphVocab())
 
@@ -37,15 +38,10 @@ class Predictor:
 
     def predict(self, text: str):
 
-        topic_group = self.topic_group_classifier.predict(text)
-        topic = self.topic_classifier.predict(text)
-        # тут будет определение исполнителя
-        adress = self.find_adress(text)
-
-        final_answer = {'Группа тем': self.topic_group_collector[topic_group],
-                        'Тема': self.topic_collector[topic],
-                        'Исполнитель': '',
-                        'Адрес': adress}
+        final_answer = {'Группа тем': self.topic_group_collector[self.topic_group_classifier.predict(text)],
+                        'Тема': self.topic_collector[self.topic_classifier.predict(text)],
+                        'Исполнитель': self.executor_collector[self.executor_classifier.predict(text)],
+                        'Адрес': self.find_adress(text)}
         
         return final_answer
     
