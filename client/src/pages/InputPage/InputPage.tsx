@@ -1,9 +1,9 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import s from "./UploadPage.module.scss";
+import s from "./InputPage.module.scss";
 
-const FileUploadPage: React.FC = () => {
+const InputPage: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
     const [fileName, setFileName] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -33,7 +33,7 @@ const FileUploadPage: React.FC = () => {
             setIsLoading(true);
 
             const response = await axios.post(
-                "http://127.0.0.1:8000/api/upload",
+                "http://127.0.0.1:8000/api/test",
                 formData,
                 {
                     headers: {
@@ -63,11 +63,10 @@ const FileUploadPage: React.FC = () => {
             <form onSubmit={handleSubmit} className={s.form}>
                 <div className={s.formContainer}>
                     <input
-                        type="file"
+                        type="text"
                         onChange={handleFileChange}
                         className={s.input}
                     />
-                    <p className={s.p}>Выбранный файл: {fileName}</p>
                     {isLoading ? (
                         <p className={s.p}>Идет обработка данных...</p>
                     ) : (
@@ -89,4 +88,4 @@ const FileUploadPage: React.FC = () => {
     );
 };
 
-export default FileUploadPage;
+export default InputPage;

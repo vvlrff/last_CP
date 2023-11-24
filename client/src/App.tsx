@@ -9,11 +9,13 @@ import HomePage from "./pages/HomePage/HomePage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import FileUploadPage from "./pages/UploadPage/UploadPage";
 import ResultPage from "./pages/ResultPage/ResultPage";
+import InputPage from "./pages/InputPage/InputPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
+            <Route path="input" element={<InputPage />} />
             <Route path="upload" element={<FileUploadPage />} />
             <Route path="result" element={<ResultPage />} />
             <Route path="*" element={<NotFoundPage />} />
