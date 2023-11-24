@@ -8,26 +8,30 @@ import { useLocation } from "react-router-dom";
 
 const MapPage: React.FC = () => {
 
-    const location = useLocation();
-    const { state } = location;
+    // const location = useLocation();
+    // const { state } = location;
 
-    const data = state.response
+    // const data = state.response
 
     return (
         <div className={s.container}>
             <>
                 <div className={s.sidebar}>
                     <div>
-                        Исполнитель: {data.executor}
+                        Исполнитель: 
+                        {/* {data.executor} */}
                     </div>
                     <div>
-                        text_incident: {data.text_incident}
+                        text_incident: 
+                        {/* {data.text_incident} */}
                     </div>
                     <div>
-                        topic: {data.topic}
+                        topic: 
+                        {/* {data.topic} */}
                     </div>
                     <div>
-                        topic_group: {data.topic_group}
+                        topic_group: 
+                        {/* {data.topic_group} */}
                     </div>
                 </div>
 
