@@ -13,14 +13,17 @@
         width: 40vw;
         display: flex;
         flex-direction: column;
+        max-height: 50vh;
+        overflow-y: scroll;
+        padding-right: 3px;
 
-        .list {
+        .item {
             padding: 30px;
             background-color: #fff;
             border-radius: 12px;
 
-            .item:not(:first-child) {
-                margin-top: 20px;
+            .dataContainer {
+                margin-top: 15px;
             }
 
             .topic {
@@ -29,13 +32,13 @@
             }
         }
 
+        .item:not(:first-child) {
+            margin-top: 20px;
+        }
+
         .inputFilter {
             padding: 23px 30px;
             border-radius: 12px;
-        }
-
-        .itemContainer {
-            margin-top: 55px;
         }
     }
 
