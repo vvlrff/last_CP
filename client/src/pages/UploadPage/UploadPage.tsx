@@ -12,6 +12,8 @@ const FileUploadPage: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [serverResponse, setServerResponse] = useState<any | null>(null);
 
+    console.log("serverResponse", serverResponse)
+
     const navigate = useNavigate();
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +58,7 @@ const FileUploadPage: React.FC = () => {
 
     useEffect(() => {
         if (serverResponse) {
-            navigate("/result");
-            // navigate("/result", { state: { response: serverResponse } });
+            navigate("/result", { state: { response: serverResponse } });
         }
     }, [serverResponse, navigate]);
 
