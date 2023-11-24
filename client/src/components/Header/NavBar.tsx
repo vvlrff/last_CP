@@ -36,16 +36,6 @@ const NavBar = () => {
                         Ввести запрос
                     </NavLink>
                 </li>
-                <li className={s.item}>
-                    <NavLink
-                        className={({ isActive }) =>
-                            isActive ? `${s.active}` : ""
-                        }
-                        to="/map"
-                    >
-                        Карта
-                    </NavLink>
-                </li>
             </ul>
         </nav>
     );
