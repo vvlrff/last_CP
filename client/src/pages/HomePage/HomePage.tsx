@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import s from "./HomePage.module.scss";
-import img from "/baymax.png";
 import { motion } from "framer-motion";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import s from "./HomePage.module.scss";
 
 const HomePage = () => {
     const sliderSettings = {

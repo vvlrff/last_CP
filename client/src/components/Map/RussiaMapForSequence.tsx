@@ -4,9 +4,11 @@ import { IData } from "../../pages/MapPage/MapPage";
 import "leaflet/dist/leaflet.css";
 
 
-const RussiaMap = ({ data }: { data: IData }) => {
+const RussiaMapForSequence = (
+    // { data }: { data: IData }
+    ) => {
 
-    console.log(data)
+    // console.log(data)
 
     const greenIcon = new L.Icon({
         iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
@@ -51,7 +53,7 @@ const RussiaMap = ({ data }: { data: IData }) => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
 
-            {data.latitude && data.longitude && (
+            {/* {data.latitude && data.longitude && (
                 <Marker
                     position={[data.latitude, data.longitude]}
                     icon={redIcon} 
@@ -65,25 +67,11 @@ const RussiaMap = ({ data }: { data: IData }) => {
                         </div>
                     </Popup>
                 </Marker>
-            )}
+            )} */}
 
         </MapContainer>
     );
 };
 
-export default RussiaMap;
+export default RussiaMapForSequence;
 
-
-// const greenStationIcon = new L.Icon({
-//     iconUrl: greenStation, // Replace with your green icon path
-//     iconSize: [30, 30],
-//     iconAnchor: [15, 30],
-//     popupAnchor: [0, -30],
-// });
-
-// const greyStationIcon = new L.Icon({
-//     iconUrl: blackStation, // Replace with your grey icon path
-//     iconSize: [30, 30],
-//     iconAnchor: [15, 30],
-//     popupAnchor: [0, -30],
-// });
