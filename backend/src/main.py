@@ -6,7 +6,6 @@ app = FastAPI(
     title="Digital HACK API"
 )
 
-
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",

@@ -73,8 +73,6 @@ class Predictor:
                               latitude=latitude,
                               longitude=longitude)
     
-
-
     def file_predict(self, path_to_file: str):
         file_data = pd.read_csv(path_to_file)
         list_data = file_data['text'].to_list()
