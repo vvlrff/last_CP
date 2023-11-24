@@ -12,43 +12,9 @@ services:
   client:
     build: ./client
     expose:
-      - 5173
+      - 3000
     ports:
-      - "5173:5173"
-    command: npm run dev
+      - "3000:3000"
+    command: npm run dev -- --port 3000
     depends_on:
       - backend
-
-#   pgadminhack:
-#     image: dpage/pgadmin4:latest
-#     env_file:
-#       - ./backend/.env
-#     ports:
-#       - "8085:80"
-#     depends_on:
-#       - dbhack
-
-#   dbhack:
-#     image: postgres:15
-#     container_name: dbhack
-#     command: -p 1221
-#     expose:
-#       - 1221
-#     env_file:
-#       - ./backend/.env
-#     volumes:
-#       - postgres_data:/var/lib/postgresql/data
-
-#   alembic:
-#     build:
-#       context: .
-#       dockerfile: alembic/Dockerfile
-#     env_file:
-#       - ./backend/.env
-#     depends_on:
-#       - dbhack
-#     command: alembic upgrade head
-
-# volumes:
-#   postgres_data:
-
