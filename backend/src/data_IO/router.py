@@ -1,6 +1,6 @@
 from fastapi import APIRouter, File, UploadFile
 from fastapi.responses import FileResponse 
-from .schemas import ResponseSchema
+from .schemas import ResponseSchema, ListResponseSchema
 from .interface import Predictor
 from .AI_model import Magic
 import os
@@ -10,7 +10,7 @@ router = APIRouter (
     tags= ['api']
 )
 
-@router.post("/upload")
+@router.post("/upload", response_model=ListResponseSchema)
 async def upload_file(file: UploadFile = File(...)):
 
     file_path = os.path.join(os.path.join(os.getcwd(), 'src', 'data_IO', 'stash_files'), file.filename)  
