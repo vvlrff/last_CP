@@ -13,7 +13,6 @@ const RussiaMap = ({ data }: { data: IData }) => {
     const center = [60, 80];
     const zoom = 3.3;
 
-    // Determine the icon based on sentiment
     const getIconBySentiment = () => {
         switch (data.sentiment) {
             case "Негативная":
