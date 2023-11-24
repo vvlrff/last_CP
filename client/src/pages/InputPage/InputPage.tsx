@@ -16,7 +16,7 @@ const InputPage: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value);
     };
 
@@ -80,7 +80,6 @@ const InputPage: React.FC = () => {
                 <div className={s.inputContainer}>
                     <h2>Введите свой текст</h2>
                     <textarea
-                        type="text"
                         value={text}
                         onChange={handleTextChange}
                         className={s.input}

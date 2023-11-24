@@ -9,6 +9,7 @@ class ResponseSchema(BaseModel):
     topic_group:str
     text_incident:str
     topic:str
+    sentiment: str
     adress:dict
     latitude:float | None
     longitude:float | None

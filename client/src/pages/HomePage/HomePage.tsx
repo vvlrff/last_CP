@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import s from "./HomePage.module.scss";
-import img from "/baymax.png";
 import { motion } from "framer-motion";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import s from "./HomePage.module.scss";
 
 const HomePage = () => {
     const sliderSettings = {
@@ -16,6 +15,7 @@ const HomePage = () => {
         slidesToScroll: 1,
         autoplay: true,
         arrows: false,
+        autoplaySpeed: 5000,
     };
     return (
         <section className={s.section}>
@@ -49,40 +49,38 @@ const HomePage = () => {
                     }}
                     className={s.content}
                 >
-                    <h2>Take your own</h2>
-                    <div className={s.highlighted}>
-                        <h1>Hero</h1>
-                    </div>
+                    <h2>Обработка обращений граждан</h2>
+
                     <div className={s.sliderContainer}>
                         <Slider {...sliderSettings}>
-                            <div>
+                            <div className={s.flexContainer}>
                                 <h3>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Doloribus consequuntur
-                                    quibusdam recusandae nobis inventore iusto
-                                    exercitationem quod fugiat! Similique, rem
-                                    rerum. Sit vitae reiciendis nulla, quae vero
-                                    eum nostrum adipisci.
+                                    Разработанное нами решение классифицирует
+                                    обращения пользователей и определяет группу
+                                    тем, тему, исполнителя и адрес, указанный в
+                                    обращении.
                                 </h3>
                             </div>
                             <div>
                                 <h3>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Doloribus consequuntur
-                                    quibusdam recusandae nobis inventore iusto
-                                    exercitationem quod fugiat! Similique, rem
-                                    rerum. Sit vitae reiciendis nulla, quae vero
-                                    eum nostrum adipisci.
+                                    Технические особенности: Мультиязычность,
+                                    многопоточность, развертываемость,
+                                    автономность, user-friendly интерфейс,
+                                    state-of-art technology, масштабируемость,
+                                    легкая интеграция решения, решение в
+                                    Docker-контейнере.
                                 </h3>
                             </div>
                             <div>
                                 <h3>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Doloribus consequuntur
-                                    quibusdam recusandae nobis inventore iusto
-                                    exercitationem quod fugiat! Similique, rem
-                                    rerum. Sit vitae reiciendis nulla, quae vero
-                                    eum nostrum adipisci.
+                                    Отсеивание бессмысленных обращений, высокая
+                                    точность и скорость работы, высочайшая
+                                    стабильность доработанного алгоритма
+                                    классификации, инновационный подход
+                                    визуализации данных, использование ТОЛЬКО
+                                    open-source технологий, удобный
+                                    WEB-интерфейс, наглядность, легкая
+                                    интеграция решения.
                                 </h3>
                             </div>
                         </Slider>
