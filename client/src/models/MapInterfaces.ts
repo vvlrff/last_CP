@@ -1,4 +1,4 @@
-export interface RussiaRailwayMapProps {
+export interface RussiaMapProps {
     data?: TrainData[];
 }
 
