@@ -37,6 +37,7 @@ $RECYCLE.BIN/
 .LSOverride
 Icon
 ._*
+*.pt
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
