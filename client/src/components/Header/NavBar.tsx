@@ -33,7 +33,7 @@ const NavBar = () => {
                         }
                         to="/input"
                     >
-                        Опробовать
+                        Ввести запрос
                     </NavLink>
                 </li>
                 <li className={s.item}>

@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import RussiaRailwayMap from "../../components/Map/RussiaRailwayMap";
-import { mapApi } from "../../services/mapApi";
-import Loader from "../../components/Loader/Loader";
-import s from "./MapPage.module.scss";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import s from "./MapPage.module.scss";
 
 export interface IData {
     executor: string
@@ -15,6 +12,9 @@ export interface IData {
     adress: {
         город?: string
     }
+    latitude: number
+    longitude: number
+
 }
 
 const MapPage: React.FC = () => {
@@ -32,27 +32,41 @@ const MapPage: React.FC = () => {
                 animate={{ opacity: 1 }}
                 className={s.container}
             >
+
                 <div className={s.sidebar}>
-                    <div>
-                        Исполнитель:
-                        {data.executor}
-                    </div>
-                    <div>
-                        Текст инцидента:
-                        {data.text_incident}
-                    </div>
-                    <div>
-                        Тема:
-                        {data.topic}
-                    </div>
-                    <div>
-                        Группа тем:
-                        {data.topic_group}
-                    </div>
-                    <div>
-                        Местоположение:
-                        {data?.adress && data.adress.город}
-                    </div>
+                    <ul className={s.list}>
+                        <li className={s.item}>
+                            <span className={s.topic}>Исполнитель: </span>
+                            <span className={s.topicData}>
+                                {data.executor}
+                            </span>
+                        </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Введенный текст: </span>
+                            <span className={s.topicData}>
+                                {data.text_incident}
+                            </span>
+                        </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Тема: </span>
+                            <span className={s.topicData}>
+                                {data.topic}
+                            </span>
+                        </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Группа: </span>
+                            <span className={s.topicData}>
+                                {data.topic_group}
+                            </span>
+                        </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Адрес: </span>
+                            <span className={s.topicData}>
+                                {data?.adress && data.adress.город}
+                            </span>
+                        </li>
+                    </ul>
+
                 </div>
 
                 <div className={s.map}>
