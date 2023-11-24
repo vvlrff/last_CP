@@ -4,6 +4,7 @@ import { mapApi } from "../../services/mapApi";
 import Loader from "../../components/Loader/Loader";
 import s from "./MapPage.module.scss";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const MapPage: React.FC = () => {
     // const location = useLocation();
@@ -13,7 +14,11 @@ const MapPage: React.FC = () => {
 
     return (
         <section className={s.section}>
-            <div className={s.container}>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className={s.container}
+            >
                 <div className={s.sidebar}>
                     <div>
                         Исполнитель:
@@ -38,7 +43,7 @@ const MapPage: React.FC = () => {
                     // data={datalistTrainWagon || datalistSupport2}
                     />
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 };
