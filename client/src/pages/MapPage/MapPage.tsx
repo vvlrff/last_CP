@@ -21,19 +21,23 @@ const MapPage: React.FC = () => {
             >
                 <div className={s.sidebar}>
                     <div>
-                        Исполнитель:
+                        <span className={s.topic}>Исполнитель: </span>
+                        <span className={s.topicData}>123</span>
                         {/* {data.executor} */}
                     </div>
                     <div>
-                        text_incident:
+                        <span className={s.topic}>text_incident: </span>
+                        <span className={s.topicData}>123</span>
                         {/* {data.text_incident} */}
                     </div>
                     <div>
-                        topic:
+                        <span className={s.topic}>topic: </span>
+                        <span className={s.topicData}>123</span>
                         {/* {data.topic} */}
                     </div>
                     <div>
-                        topic_group:
+                        <span className={s.topic}>topic_group: </span>
+                        <span className={s.topicData}>123</span>
                         {/* {data.topic_group} */}
                     </div>
                 </div>
