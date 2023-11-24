@@ -14,6 +14,7 @@ origins = [
     "http://localhost:3000",  # Порт для клиентской части
     "http://localhost:5173",  # Порт для клиентской части
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

@@ -33,7 +33,13 @@ const HomePage = () => {
                     <h1>Hero</h1>
                     <div className={s.btnContainer}>
                         <Link to="upload" className={s.btn}>
-                            <span>proceed</span>
+                            <span>Загрузить файл</span>
+                            <FaLongArrowAltRight />
+                        </Link>
+                    </div>
+                    <div className={s.btnContainer}>
+                        <Link to="input" className={s.btn}>
+                            <span>Опробовать</span>
                             <FaLongArrowAltRight />
                         </Link>
                     </div>
