@@ -1,5 +1,5 @@
-
 from .schemas import ResponseSchema
+
 
 class Magic():
 
@@ -7,7 +7,6 @@ class Magic():
         self.magic = magic
         self.path_file = path_file
 
-    
     def res_file(self):
         return self.path_file
     
