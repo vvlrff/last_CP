@@ -5,7 +5,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 from .models.bert_classifier import BertClassifier
-from .schemas import ResponseSchema
+from .schemas import ResponseSchema, ListResponseSchema
 from .find_coords.main import main 
 class Predictor:
     def __init__(self) -> None:
@@ -75,3 +75,12 @@ class Predictor:
     
 
 
+    def file_predict(self, path_to_file: str):
+        file_data = pd.read_csv(path_to_file)
+        list_data = file_data['text'].to_list()
+
+        total_collector = []
+        for element in list_data:
+            total_collector.append(self.predict(element))
+        
+        return total_collector
