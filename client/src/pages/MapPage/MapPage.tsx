@@ -20,26 +20,32 @@ const MapPage: React.FC = () => {
                 className={s.container}
             >
                 <div className={s.sidebar}>
-                    <div>
-                        <span className={s.topic}>Исполнитель: </span>
-                        <span className={s.topicData}>123</span>
-                        {/* {data.executor} */}
-                    </div>
-                    <div>
-                        <span className={s.topic}>text_incident: </span>
-                        <span className={s.topicData}>123</span>
-                        {/* {data.text_incident} */}
-                    </div>
-                    <div>
-                        <span className={s.topic}>topic: </span>
-                        <span className={s.topicData}>123</span>
-                        {/* {data.topic} */}
-                    </div>
-                    <div>
-                        <span className={s.topic}>topic_group: </span>
-                        <span className={s.topicData}>123</span>
-                        {/* {data.topic_group} */}
-                    </div>
+                    <ul className={s.list}>
+                        <li className={s.item}>
+                            <span className={s.topic}>Исполнитель: </span>
+                            <span className={s.topicData}>
+                                {/* {data.executor} */}
+                            </span>
+                        </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Введенный текст: </span>
+                            <span className={s.topicData}>
+                                {/* {data.text_incident} */}
+                            </span>
+                        </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Тема: </span>
+                            <span className={s.topicData}>
+                                {/* {data.topic} */}
+                            </span>
+                        </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Группа: </span>
+                            <span className={s.topicData}>
+                                {/* {data.topic_group} */}
+                            </span>
+                        </li>
+                    </ul>
                 </div>
 
                 <div className={s.map}>
