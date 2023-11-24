@@ -42,7 +42,7 @@ const MapPage: React.FC = () => {
                             </span>
                         </li>
                         <li className={s.item}>
-                            <span className={s.topic}>Введенный текст: </span>
+                            <span className={s.topic}>Текст обращения: </span>
                             <span className={s.topicData}>
                                 {data.text_incident}
                             </span>
