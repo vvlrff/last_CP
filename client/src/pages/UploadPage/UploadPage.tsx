@@ -2,6 +2,8 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import s from "./UploadPage.module.scss";
+import Loader from "../../components/Loader/Loader";
+import { motion } from "framer-motion";
 
 const FileUploadPage: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
@@ -60,7 +62,12 @@ const FileUploadPage: React.FC = () => {
 
     return (
         <section className={s.section}>
-            <form onSubmit={handleSubmit} className={s.form}>
+            <motion.form
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                onSubmit={handleSubmit}
+                className={s.form}
+            >
                 <div className={s.formContainer}>
                     <input
                         type="file"
@@ -79,12 +86,19 @@ const FileUploadPage: React.FC = () => {
                         </>
                     )}
                 </div>
-                <div className={s.buttonContainer}>
+                {isLoading && <Loader></Loader>}
+                <div
+                    className={
+                        file
+                            ? `${s.buttonContainer}`
+                            : `${s.buttonContainer} ${s.buttonDisabled}`
+                    }
+                >
                     <button disabled={!file} type="submit" className={s.button}>
                         Загрузить файл
                     </button>
                 </div>
-            </form>
+            </motion.form>
         </section>
     );
 };
