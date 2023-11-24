@@ -9,3 +9,4 @@ class ResponseSchema(BaseModel):
     topic_group:str
     text_incident:str
     topic:str
+    adress:dict

@@ -1,6 +1,8 @@
 import os
-from .models.bert_classifier import BertClassifier
+from natasha import (MorphVocab, LOC, AddrExtractor)
 import pandas as pd
+
+from .models.bert_classifier import BertClassifier
 from .schemas import ResponseSchema
 
 class Predictor:
@@ -20,14 +22,28 @@ class Predictor:
         self.topic_group_collector = dict(enumerate(list(data.topic_group.unique())))
         self.topic_collector = dict(enumerate(list(data.topic.unique())))
         # тут будет еще однин словарь
+        self.addr_extractor = AddrExtractor(MorphVocab())
 
+    def find_adress(self, text: str):
+        try:
+            matches = self.addr_extractor(text)
+            facts = [i.fact.as_json for i in matches]
+            adress_collector = dict()
+            for i in range(len(facts)):
+                tmp = list(facts[i].values())
+                adress_collector[tmp[1]] = tmp[0]
+            return adress_collector
+        except Exception:
+            return adress_collector
+        
     def predict(self, text: str):
 
         topic_group = self.topic_group_collector[self.topic_group_classifier.predict(text)]
         topic = self.topic_collector[self.topic_classifier.predict(text)]
         # тут будет определение исполнителя
-        
-        return ResponseSchema(executor='Исполнитель А', topic_group=str(topic_group), text_incident=text, topic=str(topic)) # тут будет еще исполнитель
+        adress = self.find_adress(text)
+        print(adress)
+        return ResponseSchema(executor='Исполнитель А', topic_group=str(topic_group), text_incident=text, topic=str(topic), adress=adress) # тут будет еще исполнитель
     
 
 # if __name__ != '__main__':
