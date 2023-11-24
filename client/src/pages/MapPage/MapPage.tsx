@@ -6,11 +6,24 @@ import s from "./MapPage.module.scss";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const MapPage: React.FC = () => {
-    // const location = useLocation();
-    // const { state } = location;
 
-    // const data = state.response
+export interface IData {
+    executor: string
+    text_incident: string
+    topic: string
+    topic_group: string
+    adress: {
+        город?: string
+    }
+}
+
+const MapPage: React.FC = () => {
+    const location = useLocation();
+    const { state } = location;
+
+    const data: IData = state.response
+
+    console.log(data)
 
     return (
         <section className={s.section}>
@@ -22,25 +35,29 @@ const MapPage: React.FC = () => {
                 <div className={s.sidebar}>
                     <div>
                         Исполнитель:
-                        {/* {data.executor} */}
+                        {data.executor}
                     </div>
                     <div>
-                        text_incident:
-                        {/* {data.text_incident} */}
+                        Текст инцидента:
+                        {data.text_incident}
                     </div>
                     <div>
-                        topic:
-                        {/* {data.topic} */}
+                        Тема:
+                        {data.topic}
                     </div>
                     <div>
-                        topic_group:
-                        {/* {data.topic_group} */}
+                        Группа тем:
+                        {data.topic_group}
+                    </div>
+                    <div>
+                        Местоположение:
+                        {data?.adress && data.adress.город}
                     </div>
                 </div>
 
                 <div className={s.map}>
                     <RussiaRailwayMap
-                    // data={datalistTrainWagon || datalistSupport2}
+                        data={data}
                     />
                 </div>
             </motion.div>
