@@ -5,6 +5,11 @@
 ![image](https://github.com/vvlrff/last_CP/assets/125179070/2f348bbd-d4fe-43b6-b693-04b3804bdf2c)
    
 # Инструкция для запуска Docker'a
+После скачивание репозитория git clone https://github.com/vvlrff/last_CP.git
+
+НЕОБХОДИМО скачать все модели (файлы с расширением .pt)  находящиеся по ссылке:  https://drive.google.com/drive/u/0/folders/1ARaRnfv4liZeFQYogdySYIcUNzq5Pcqb
+После скачивания перенести все файлы в папку last_CP/backend/src/data_IO/models
+
 Для запуска Docker'a требуется выполнить следующие команды в консоли:
 ```
     last_CP/docker-compose up --build
