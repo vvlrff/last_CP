@@ -2,16 +2,17 @@ import React from "react";
 import RussiaMapForSequence from "../../components/Map/RussiaMapForSequence";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { IData } from "../MapPage/MapPage";
 import s from "./ResultPage.module.scss";
 
 
 const ResultPage: React.FC = () => {
-    // const location = useLocation();
-    // const { state } = location;
+    const location = useLocation();
+    const { state } = location;
 
-    // const data: IData = state.response
+    const data: IData[] = state.response
 
-    // console.log(data)
+    console.log(data)
 
     const container = {
         hidden: { opacity: 1, scale: 0 },
@@ -86,7 +87,7 @@ const ResultPage: React.FC = () => {
 
                 <div className={s.map}>
                     <RussiaMapForSequence
-                    // data={data}
+                    data={data}
                     />
                 </div>
             </motion.div>
