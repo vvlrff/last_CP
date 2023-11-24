@@ -13,3 +13,6 @@ class ResponseSchema(BaseModel):
     adress:dict
     latitude:float | None
     longitude:float | None
+
+class ListResponseSchema(BaseModel):
+    results:list[ResponseSchema]

@@ -61,11 +61,20 @@ class Predictor:
                         'Исполнитель': self.executor_collector[self.executor_classifier.predict(text)],
                         'Тональность': self.setminent_collector[self.get_sentiment(text)],
                         'Адрес': self.find_adress(text)}
-        
         return final_answer
+    
+    def file_predict(self, path_to_file: str):
+        file_data = pd.read_csv(path_to_file)
+        list_data = file_data['text'].to_list()
+
+        total_collector = []
+        for element in list_data:
+            total_collector.append(self.predict(element))
+        
+        return total_collector
     
 
 if __name__ == '__main__':
     tester = Predictor()
-    print(tester.predict('Добрый день. Сегодня, 20.08.22, моя мать шла по улице Ленина между домами 96 и 94. Фонари не горят, упала в яму, которую не видно. Сильно ударилась, остались синяки, очень больно. Благо шла не одна.<br>Уважаемая Администрация, сделайте с этим что-нибудь, да и не только с этим. Ходить опасно не только взрослым, но и детям. Если бы упал маленький ребёнок, было бы намного хуже. Фото прилагаю. Спасибо!'))
-
+    # print(tester.predict('Добрый день. Сегодня, 20.08.22, моя мать шла по улице Ленина между домами 96 и 94. Фонари не горят, упала в яму, которую не видно. Сильно ударилась, остались синяки, очень больно. Благо шла не одна.<br>Уважаемая Администрация, сделайте с этим что-нибудь, да и не только с этим. Ходить опасно не только взрослым, но и детям. Если бы упал маленький ребёнок, было бы намного хуже. Фото прилагаю. Спасибо!'))
+    print(tester.file_predict('example.csv'))
