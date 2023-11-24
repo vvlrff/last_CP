@@ -4,23 +4,26 @@ import { RussiaRailwayMapProps, TrainData, stationTrainData } from "../../models
 import blackStation from "../../assets/images/blackStation.png";
 import greenStation from "../../assets/images/greenStation.png";
 import "leaflet/dist/leaflet.css";
+import { IData } from "../../pages/MapPage/MapPage";
 
 
-const RussiaRailwayMap: React.FC<RussiaRailwayMapProps> = () => {
+const RussiaMap = ({data}: {data: IData}) => {
 
-    const greenStationIcon = new L.Icon({
-        iconUrl: greenStation, // Replace with your green icon path
-        iconSize: [30, 30],
-        iconAnchor: [15, 30],
-        popupAnchor: [0, -30],
-    });
+    console.log(data)
 
-    const greyStationIcon = new L.Icon({
-        iconUrl: blackStation, // Replace with your grey icon path
-        iconSize: [30, 30],
-        iconAnchor: [15, 30],
-        popupAnchor: [0, -30],
-    });
+    // const greenStationIcon = new L.Icon({
+    //     iconUrl: greenStation, // Replace with your green icon path
+    //     iconSize: [30, 30],
+    //     iconAnchor: [15, 30],
+    //     popupAnchor: [0, -30],
+    // });
+
+    // const greyStationIcon = new L.Icon({
+    //     iconUrl: blackStation, // Replace with your grey icon path
+    //     iconSize: [30, 30],
+    //     iconAnchor: [15, 30],
+    //     popupAnchor: [0, -30],
+    // });
 
     const mapStyle = {
         height: "calc(93vh)",
@@ -48,4 +51,4 @@ const RussiaRailwayMap: React.FC<RussiaRailwayMapProps> = () => {
     );
 };
 
-export default RussiaRailwayMap;
+export default RussiaMap;

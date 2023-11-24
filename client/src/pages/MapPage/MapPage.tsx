@@ -1,16 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import RussiaRailwayMap from "../../components/Map/RussiaRailwayMap";
-import { mapApi } from "../../services/mapApi";
-import Loader from "../../components/Loader/Loader";
-import s from "./MapPage.module.scss";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import s from "./MapPage.module.scss";
+
+export interface IData {
+    executor: string
+    text_incident: string
+    topic: string
+    topic_group: string
+    adress: {
+        город?: string
+    }
+    latitude: number
+    longitude: number
+
+}
 
 const MapPage: React.FC = () => {
-    // const location = useLocation();
-    // const { state } = location;
+    const location = useLocation();
+    const { state } = location;
 
-    // const data = state.response
+    const data: IData = state.response
+
+    console.log(data)
 
     return (
         <section className={s.section}>
@@ -19,6 +32,7 @@ const MapPage: React.FC = () => {
                 animate={{ opacity: 1 }}
                 className={s.container}
             >
+
                 <div className={s.sidebar}>
                     <ul className={s.list}>
                         <li className={s.item}>
@@ -45,12 +59,19 @@ const MapPage: React.FC = () => {
                                 {data.topic_group}
                             </span>
                         </li>
+                        <li className={s.item}>
+                            <span className={s.topic}>Адрес: </span>
+                            <span className={s.topicData}>
+                                {data?.adress && data.adress.город}
+                            </span>
+                        </li>
                     </ul>
+
                 </div>
 
                 <div className={s.map}>
                     <RussiaRailwayMap
-                    // data={datalistTrainWagon || datalistSupport2}
+                        data={data}
                     />
                 </div>
             </motion.div>

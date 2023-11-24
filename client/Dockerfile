@@ -3,7 +3,7 @@ FROM node:alpine as dev
 WORKDIR /app
 COPY . .
 RUN npm install
-RUN npm run dev
+# RUN npm run dev
 
 # FROM node:alpine as build
 # WORKDIR /app
