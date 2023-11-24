@@ -3,40 +3,46 @@ import L from "leaflet";
 import { IData } from "../../pages/MapPage/MapPage";
 import "leaflet/dist/leaflet.css";
 
-
 const RussiaMap = ({ data }: { data: IData }) => {
-
-    console.log(data)
-
-    const greenIcon = new L.Icon({
-        iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-    });
-
-    const redIcon = new L.Icon({
-        iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-    });
-
-    const yellowIcon = new L.Icon({
-        iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-    });
-
     const mapStyle = {
         height: "calc(55vh)",
         display: "flex",
         alignItems: "stretch",
     };
 
-    const center = [60, 80]; 
-    const zoom = 3.3; 
+    const center = [60, 80];
+    const zoom = 3.3;
+
+    // Determine the icon based on sentiment
+    const getIconBySentiment = () => {
+        switch (data.sentiment) {
+            case "Негативная":
+                return new L.Icon({
+                    iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                });
+            case "Нейтральная":
+                return new L.Icon({
+                    iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                });
+            case "Позитивная":
+                return new L.Icon({
+                    iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                });
+            default:
+                return null;
+        }
+    };
+
+    const markerIcon = getIconBySentiment();
 
     return (
         <MapContainer
@@ -45,16 +51,15 @@ const RussiaMap = ({ data }: { data: IData }) => {
             zoom={zoom}
             maxZoom={20}
         >
-
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
 
-            {data.latitude && data.longitude && (
+            {data.latitude && data.longitude && markerIcon && (
                 <Marker
                     position={[data.latitude, data.longitude]}
-                    icon={redIcon} 
+                    icon={markerIcon}
                 >
                     <Popup>
                         <div>
@@ -62,28 +67,13 @@ const RussiaMap = ({ data }: { data: IData }) => {
                             <p>Текст инцидента: {data.text_incident}</p>
                             <p>Тема: {data.topic}</p>
                             <p>Город: {data.adress?.город}</p>
+                            <p>Sentiment: {data.sentiment}</p>
                         </div>
                     </Popup>
                 </Marker>
             )}
-
         </MapContainer>
     );
 };
 
 export default RussiaMap;
-
-
-// const greenStationIcon = new L.Icon({
-//     iconUrl: greenStation, // Replace with your green icon path
-//     iconSize: [30, 30],
-//     iconAnchor: [15, 30],
-//     popupAnchor: [0, -30],
-// });
-
-// const greyStationIcon = new L.Icon({
-//     iconUrl: blackStation, // Replace with your grey icon path
-//     iconSize: [30, 30],
-//     iconAnchor: [15, 30],
-//     popupAnchor: [0, -30],
-// });
