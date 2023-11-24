@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RussiaRailwayMap from "../../components/Map/RussiaRailwayMap";
 import { mapApi } from "../../services/mapApi";
-import { Box } from "@mui/material";
 import Loader from "../../components/Loader/Loader";
-import { motion } from "framer-motion";
-import dayjs from "dayjs";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import s from "./MapPage.module.scss";
 
 interface TrainIndexData {
@@ -38,9 +32,9 @@ const MapPage: React.FC = () => {
     const filterCards = (value: string, data: TrainIndexData[] | undefined) => {
         return data
             ? data.filter(
-                  (item) =>
-                      item.TRAIN_INDEXS && item.TRAIN_INDEXS.includes(value)
-              )
+                (item) =>
+                    item.TRAIN_INDEXS && item.TRAIN_INDEXS.includes(value)
+            )
             : [];
     };
 
@@ -53,26 +47,26 @@ const MapPage: React.FC = () => {
         return () => clearTimeout(Debounce);
     }, [trainIdexesData, filterValue]);
 
-    useEffect(() => {
-        const fetchDataIfNeeded = async () => {
-            if (clickItem && selectedDateTime) {
-                const trainData = {
-                    train_index: clickItem,
-                    current_data: dayjs(selectedDateTime).format(
-                        "YYYY-MM-DD HH:mm:ss"
-                    ),
-                };
-                await listTrainWagon(trainData);
-            } else if (clickItem) {
-                const trainData = {
-                    train_index: clickItem,
-                };
-                await listSupport2(trainData);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchDataIfNeeded = async () => {
+    //         if (clickItem && selectedDateTime) {
+    //             const trainData = {
+    //                 train_index: clickItem,
+    //                 current_data: dayjs(selectedDateTime).format(
+    //                     "YYYY-MM-DD HH:mm:ss"
+    //                 ),
+    //             };
+    //             await listTrainWagon(trainData);
+    //         } else if (clickItem) {
+    //             const trainData = {
+    //                 train_index: clickItem,
+    //             };
+    //             await listSupport2(trainData);
+    //         }
+    //     };
 
-        fetchDataIfNeeded();
-    }, [clickItem, selectedDateTime, listTrainWagon, listSupport2]);
+    //     fetchDataIfNeeded();
+    // }, [clickItem, selectedDateTime, listTrainWagon, listSupport2]);
 
     const containerV = {
         hidden: { opacity: 1, scale: 0 },
@@ -102,7 +96,7 @@ const MapPage: React.FC = () => {
                 </>
             ) : (
                 <>
-                    <Box
+                    {/* <Box
                         sx={{
                             overflowY: "scroll",
                             overflowX: "hidden",
@@ -115,42 +109,6 @@ const MapPage: React.FC = () => {
                                 initial="hidden"
                                 animate="visible"
                             >
-                                <Box
-                                    display={"flex"}
-                                    alignItems="center"
-                                    justifyContent="center"
-                                    gap={1}
-                                >
-                                    <input
-                                        type="text"
-                                        className={s.inputFilter}
-                                        placeholder="Номер поезда"
-                                        value={filterValue}
-                                        onChange={(e) =>
-                                            setFilterValue(e.target.value)
-                                        }
-                                    />
-                                    <LocalizationProvider
-                                        dateAdapter={AdapterDayjs}
-                                    >
-                                        <DateTimePicker
-                                            sx={{
-                                                "& button": {
-                                                    color: "#121212",
-                                                },
-                                            }}
-                                            label="Выберите дату"
-                                            className={s.datetime}
-                                            selectedSections={undefined}
-                                            onSelectedSectionsChange={undefined}
-                                            value={selectedDateTime}
-                                            onChange={(newDateTime) =>
-                                                setSelectedDateTime(newDateTime)
-                                            }
-                                        />
-                                    </LocalizationProvider>
-                                </Box>
-
                                 {filterTrainIdexesData &&
                                     filterTrainIdexesData?.map(
                                         (item: any, key: number) => {
@@ -166,26 +124,26 @@ const MapPage: React.FC = () => {
                                                     sx={
                                                         isItemSelected
                                                             ? {
-                                                                  backgroundColor:
-                                                                      "#eb5525 !important",
-                                                                  color: "#fff !important",
+                                                                backgroundColor:
+                                                                    "#eb5525 !important",
+                                                                color: "#fff !important",
 
-                                                                  "&:hover": {
-                                                                      boxShadow:
-                                                                          "0 0 4px 4px #7036bd !important",
-                                                                  },
+                                                                "&:hover": {
+                                                                    boxShadow:
+                                                                        "0 0 4px 4px #7036bd !important",
+                                                                },
 
-                                                                  "&:active": {
-                                                                      backgroundColor:
-                                                                          "black !important",
-                                                                  },
+                                                                "&:active": {
+                                                                    backgroundColor:
+                                                                        "black !important",
+                                                                },
 
-                                                                  "& .svg": {
-                                                                      path: {
-                                                                          fill: "#fff !important",
-                                                                      },
-                                                                  },
-                                                              }
+                                                                "& .svg": {
+                                                                    path: {
+                                                                        fill: "#fff !important",
+                                                                    },
+                                                                },
+                                                            }
                                                             : {}
                                                     }
                                                     onClick={() => {
@@ -201,7 +159,7 @@ const MapPage: React.FC = () => {
                                                                         ) =>
                                                                             selectedItem !==
                                                                             item[
-                                                                                "TRAIN_INDEXS"
+                                                                            "TRAIN_INDEXS"
                                                                             ]
                                                                     );
                                                                 } else {
@@ -209,7 +167,7 @@ const MapPage: React.FC = () => {
                                                                     return [
                                                                         ...prevClickItem,
                                                                         item[
-                                                                            "TRAIN_INDEXS"
+                                                                        "TRAIN_INDEXS"
                                                                         ],
                                                                     ];
                                                                 }
@@ -270,11 +228,11 @@ const MapPage: React.FC = () => {
                                     )}
                             </motion.div>
                         </div>
-                    </Box>
+                    </Box> */}
 
                     <div className={s.map}>
                         <RussiaRailwayMap
-                            data={datalistTrainWagon || datalistSupport2}
+                            // data={datalistTrainWagon || datalistSupport2}
                         />
                     </div>
                 </>
