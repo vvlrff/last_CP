@@ -24,25 +24,25 @@ const MapPage: React.FC = () => {
                         <li className={s.item}>
                             <span className={s.topic}>Исполнитель: </span>
                             <span className={s.topicData}>
-                                {/* {data.executor} */}
+                                {data.executor}
                             </span>
                         </li>
                         <li className={s.item}>
                             <span className={s.topic}>Введенный текст: </span>
                             <span className={s.topicData}>
-                                {/* {data.text_incident} */}
+                                {data.text_incident}
                             </span>
                         </li>
                         <li className={s.item}>
                             <span className={s.topic}>Тема: </span>
                             <span className={s.topicData}>
-                                {/* {data.topic} */}
+                                {data.topic}
                             </span>
                         </li>
                         <li className={s.item}>
                             <span className={s.topic}>Группа: </span>
                             <span className={s.topicData}>
-                                {/* {data.topic_group} */}
+                                {data.topic_group}
                             </span>
                         </li>
                     </ul>
