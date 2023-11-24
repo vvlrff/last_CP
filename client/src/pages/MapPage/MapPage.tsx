@@ -5,32 +5,30 @@ import Loader from "../../components/Loader/Loader";
 import s from "./MapPage.module.scss";
 import { useLocation } from "react-router-dom";
 
-
 const MapPage: React.FC = () => {
-
     // const location = useLocation();
     // const { state } = location;
 
     // const data = state.response
 
     return (
-        <div className={s.container}>
-            <>
+        <section className={s.section}>
+            <div className={s.container}>
                 <div className={s.sidebar}>
                     <div>
-                        Исполнитель: 
+                        Исполнитель:
                         {/* {data.executor} */}
                     </div>
                     <div>
-                        text_incident: 
+                        text_incident:
                         {/* {data.text_incident} */}
                     </div>
                     <div>
-                        topic: 
+                        topic:
                         {/* {data.topic} */}
                     </div>
                     <div>
-                        topic_group: 
+                        topic_group:
                         {/* {data.topic_group} */}
                     </div>
                 </div>
@@ -40,8 +38,8 @@ const MapPage: React.FC = () => {
                     // data={datalistTrainWagon || datalistSupport2}
                     />
                 </div>
-            </>
-        </div>
+            </div>
+        </section>
     );
 };
 
