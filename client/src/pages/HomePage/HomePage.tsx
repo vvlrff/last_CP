@@ -50,7 +50,9 @@ const HomePage = () => {
                     className={s.content}
                 >
                     <h2>Take your own</h2>
-                    <h1>Hero</h1>
+                    <div className={s.highlighted}>
+                        <h1>Hero</h1>
+                    </div>
                     <div className={s.sliderContainer}>
                         <Slider {...sliderSettings}>
                             <div>
@@ -91,7 +93,7 @@ const HomePage = () => {
                             <FaLongArrowAltRight />
                         </Link>
                         <Link to="input" className={s.btn}>
-                            <span>Опробовать</span>
+                            <span>Ввести запрос</span>
                             <FaLongArrowAltRight />
                         </Link>
                     </div>

@@ -4,6 +4,7 @@ import axios from "axios";
 import s from "./UploadPage.module.scss";
 import Loader from "../../components/Loader/Loader";
 import { motion } from "framer-motion";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 const FileUploadPage: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
@@ -75,16 +76,11 @@ const FileUploadPage: React.FC = () => {
                         className={s.input}
                     />
                     <p className={s.p}>Выбранный файл: {fileName}</p>
-                    {isLoading ? (
-                        <p className={s.p}>Идет обработка данных...</p>
-                    ) : (
-                        <>
-                            <p className={s.p}>
-                                Перетащите свои файлы сюда или щелкните в этой
-                                области
-                            </p>
-                        </>
-                    )}
+
+                    <p className={s.p}>
+                        Перетащите свои файлы сюда или щелкните в этой области
+                    </p>
+                    <IoMdAddCircleOutline />
                 </div>
                 {isLoading && <Loader></Loader>}
                 <div

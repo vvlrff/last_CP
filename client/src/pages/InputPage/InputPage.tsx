@@ -4,6 +4,10 @@ import axios from "axios";
 import s from "./InputPage.module.scss";
 import Loader from "../../components/Loader/Loader";
 import { motion } from "framer-motion";
+import { TbInputSearch } from "react-icons/tb";
+import { GiClick } from "react-icons/gi";
+import { IoIosTimer } from "react-icons/io";
+import { BsClipboardData } from "react-icons/bs";
 
 const InputPage: React.FC = () => {
     const [text, setText] = useState<string>("");
@@ -39,6 +43,26 @@ const InputPage: React.FC = () => {
         }
     };
 
+    const container = {
+        hidden: { opacity: 1, scale: 0 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                delayChildren: 0.3,
+                staggerChildren: 0.2,
+            },
+        },
+    };
+
+    const item = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+        },
+    };
+
     useEffect(() => {
         if (serverResponse) {
             navigate("/map", { state: { response: serverResponse } });
@@ -53,22 +77,42 @@ const InputPage: React.FC = () => {
                 onSubmit={handleSubmit}
                 className={s.form}
             >
-                <div>
+                <div className={s.inputContainer}>
+                    <h2>Введите свой текст</h2>
                     <input
                         type="text"
                         value={text}
                         onChange={handleTextChange}
                         className={s.input}
                     />
-                    {isLoading ? (
-                        <p className={s.p}>Идет обработка данных...</p>
-                    ) : (
-                        <>
-                            <p className={s.p}>Введите свой текст здесь</p>
-                        </>
-                    )}
                 </div>
                 {isLoading && <Loader />}
+                <div className={s.tutorial}>
+                    <h2>Как это работает?</h2>
+                    <motion.ul
+                        variants={container}
+                        initial="hidden"
+                        animate="visible"
+                        className={s.list}
+                    >
+                        <motion.li className={s.item} variants={item}>
+                            <TbInputSearch />
+                            <p>Введите запрос в строку</p>
+                        </motion.li>
+                        <motion.li className={s.item} variants={item}>
+                            <GiClick />
+                            <p>Отправьте свой запрос</p>
+                        </motion.li>
+                        <motion.li className={s.item} variants={item}>
+                            <IoIosTimer />
+                            <p>Дождитесь загрузки</p>
+                        </motion.li>
+                        <motion.li className={s.item} variants={item}>
+                            <BsClipboardData />
+                            <p>Получите результат обработки данных!</p>
+                        </motion.li>
+                    </motion.ul>
+                </div>
                 <div
                     className={
                         text

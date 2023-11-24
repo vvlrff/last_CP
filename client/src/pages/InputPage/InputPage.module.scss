@@ -1,22 +1,21 @@
-.section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
-}
-
 .formContainer {
-    // background: #fff;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
     padding: 100px 50px;
     min-width: 600px;
     border-radius: 20px;
     color: #000;
     border: 4px dashed #cccccc;
+}
+
+.inputContainer {
+    h2 {
+        font-weight: 600;
+    }
 }
 
 .p {
@@ -28,17 +27,52 @@
 }
 
 .input {
+    margin-top: 15px;
     padding: 15px;
     width: 100%;
     font-size: 18px;
     border-radius: 6px;
+    background-color: #c7eaff8c;
     outline: none;
     border: none;
 }
 
+.tutorial {
+    margin-top: 50px;
+
+    h2 {
+        font-weight: 600;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    svg {
+        width: 100px;
+        height: 100px;
+        color: #fff;
+    }
+
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+
+        .item {
+            padding: 20px 0;
+            flex-basis: 50%;
+            text-align: center;
+
+            p {
+                margin-top: 20px;
+                font-weight: 600;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
 .buttonContainer {
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 50px;
     width: fit-content;
 }
 
