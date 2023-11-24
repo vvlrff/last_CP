@@ -87,18 +87,18 @@ const ResultPage: React.FC = () => {
                                         className={s.topicData}
                                         style={{
                                             color:
-                                                data.sentiment === "Негативная"
+                                                itemData.sentiment === "Негативная"
                                                     ? "red"
-                                                    : data.sentiment ===
-                                                      "Нейтральная"
-                                                    ? "yellow"
-                                                    : data.sentiment ===
-                                                      "Позитивная"
-                                                    ? "green"
-                                                    : "",
+                                                    : itemData.sentiment ===
+                                                        "Нейтральная"
+                                                        ? "#d1d111"
+                                                        : itemData.sentiment ===
+                                                            "Позитивная"
+                                                            ? "green"
+                                                            : "",
                                         }}
                                     >
-                                        {data.sentiment}
+                                        {itemData.sentiment}
                                     </span>
                                 </div>
                                 <div className={s.dataContainer}>

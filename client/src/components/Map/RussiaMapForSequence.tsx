@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 const RussiaMapForSequence = ({ data }: { data: IData[] }) => {
     const mapStyle = {
-        height: "calc(55vh)",
+        height: "calc(85vh)",
         display: "flex",
         alignItems: "stretch",
     };
@@ -66,7 +66,7 @@ const RussiaMapForSequence = ({ data }: { data: IData[] }) => {
                                 <p>Текст инцидента: {item.text_incident}</p>
                                 <p>Тема: {item.topic}</p>
                                 <p>Город: {item.adress?.город}</p>
-                                <p>Sentiment: {item.sentiment}</p>
+                                <p>Тональность: {item.sentiment}</p>
                             </div>
                         </Popup>
                     </Marker>

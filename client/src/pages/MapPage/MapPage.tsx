@@ -63,7 +63,7 @@ const MapPage: React.FC = () => {
                                         data.sentiment === "Негативная"
                                             ? "red"
                                             : data.sentiment === "Нейтральная"
-                                            ? "yellow"
+                                            ? "#d1d111"
                                             : data.sentiment === "Позитивная"
                                             ? "green"
                                             : "",
