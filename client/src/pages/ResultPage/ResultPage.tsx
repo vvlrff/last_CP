@@ -4,17 +4,6 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import s from "./ResultPage.module.scss";
 
-export interface IData {
-    executor: string;
-    text_incident: string;
-    topic: string;
-    topic_group: string;
-    adress: {
-        город?: string;
-    };
-    latitude: number | null;
-    longitude: number | null;
-}
 
 const ResultPage: React.FC = () => {
     // const location = useLocation();
