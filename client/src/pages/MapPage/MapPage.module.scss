@@ -7,11 +7,27 @@
     padding: 30px;
     border: 3px solid black;
     border-radius: 24px;
+    gap: 30px;
 
     .sidebar {
-        width: 30vw;
+        width: 40vw;
         display: flex;
         flex-direction: column;
+
+        .list {
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+
+            .item:not(:first-child) {
+                margin-top: 20px;
+            }
+
+            .topic {
+                font-weight: 600;
+                font-size: 18px;
+            }
+        }
 
         .inputFilter {
             padding: 23px 30px;
@@ -54,48 +70,48 @@
             }
         }
 
-        .item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 85%;
+        // .item {
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: space-between;
+        //     width: 85%;
 
-            gap: 10px;
-            background-color: #fff;
-            border-radius: 12px;
-            margin: 0 auto;
-            margin-top: 20px;
-            margin-bottom: 20px;
+        //     gap: 10px;
+        //     background-color: #fff;
+        //     border-radius: 12px;
+        //     margin: 0 auto;
+        //     margin-top: 20px;
+        //     margin-bottom: 20px;
 
-            padding: 10px 25px;
-            color: #121212;
-            cursor: pointer;
-            box-shadow: 0 0 4px 4px transparent;
-            transition: box-shadow 0.3s ease, color 0.3s ease,
-                background-color 0.3s ease;
+        //     padding: 10px 25px;
+        //     color: #121212;
+        //     cursor: pointer;
+        //     box-shadow: 0 0 4px 4px transparent;
+        //     transition: box-shadow 0.3s ease, color 0.3s ease,
+        //         background-color 0.3s ease;
 
-            &:hover {
-                box-shadow: 0 0 4px 4px #eb5525;
-            }
+        //     &:hover {
+        //         box-shadow: 0 0 4px 4px #eb5525;
+        //     }
 
-            &:active {
-                color: #fff;
-                background-color: #121212;
-            }
+        //     &:active {
+        //         color: #fff;
+        //         background-color: #121212;
+        //     }
 
-            .content {
-                .title {
-                    margin: 5px 0;
-                    font-weight: 400;
-                    font-size: 16px;
+        //     .content {
+        //         .title {
+        //             margin: 5px 0;
+        //             font-weight: 400;
+        //             font-size: 16px;
 
-                    span {
-                        font-weight: 600;
-                        font-size: 18px;
-                    }
-                }
-            }
-        }
+        //             span {
+        //                 font-weight: 600;
+        //                 font-size: 18px;
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     .map {

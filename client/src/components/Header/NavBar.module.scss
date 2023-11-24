@@ -1,0 +1,26 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+
+    .item {
+        font-weight: 600;
+        font-size: 20px;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    .active {
+        color: #fff;
+    }
+}
