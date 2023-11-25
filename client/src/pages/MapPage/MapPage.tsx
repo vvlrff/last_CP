@@ -73,7 +73,7 @@ const MapPage: React.FC = () => {
                             </span>
                         </li>
                         <li className={s.item}>
-                            <span className={s.topic}>Адрес: </span>
+                            <span className={s.topic}>Город: </span>
                             <span className={s.topicData}>
                                 {data?.adress && data.adress.город}
                             </span>

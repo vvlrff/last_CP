@@ -102,7 +102,7 @@ const ResultPage: React.FC = () => {
                                     </span>
                                 </div>
                                 <div className={s.dataContainer}>
-                                    <span className={s.topic}>Адрес: </span>
+                                    <span className={s.topic}>Город: </span>
                                     <span className={s.topicData}>
                                         {itemData?.adress &&
                                             itemData.adress.город}
